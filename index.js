@@ -11,8 +11,17 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-    console.log(socket);
-    console.log(socket.id);
+
+    socket.on("Boas vindas!", (data) => {
+        console.log("Executando evento de boas vindas!");
+        console.log(data);
+    });
+
+    socket.on("word", (data) => {
+        console.log(data);
+        socket.emit("result", data + " - Gabriel Fullstack");
+    });
+
 });
 
 http.listen(3000, () => {

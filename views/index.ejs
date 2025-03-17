@@ -6,10 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <h1>Teste!</h1>
+    <h1>SOCKET.IO</h1>
+    <input type="text" name="" id="word">
+    <button onClick="send()">Enviar</button>
+    <hr/>
+    <p id="result"></p>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js" integrity="sha512-8BHxHDLsOHx+flIrQ0DrZcea7MkHqRU5GbTHmbdzMRnAaoCIkZ97PqZcXJkKZckMMhqfoeaJE+DNUVuyoQsO3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
+    
     let socket = io("http://192.168.3.115:3000/");
+    socket.emit("Boas vindas!", {name: "Gabriel R. Fernandes"});
+
+    socket.on("result", (data) => {
+      let p = document.getElementById("result");
+      p.innerHTML = data;
+    });
+    
+    function send() {
+      let input = document.getElementById("word");
+      socket.emit("word", input.value);
+    }
+
   </script>
 </html>
