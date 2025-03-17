@@ -16,6 +16,11 @@
   <script>
     
     let socket = io("http://192.168.3.115:3000/");
+
+    socket.on("disconnect", () => {
+      console.log("Desconectado!");
+    });
+
     socket.emit("Boas vindas!", {name: "Gabriel R. Fernandes"});
 
     socket.on("result", (data) => {

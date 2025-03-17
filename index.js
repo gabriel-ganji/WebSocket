@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
 
+    socket.on("disconnect", () => {
+        console.log("X desconectou " + socket.id);
+    });
+
     socket.on("Boas vindas!", (data) => {
         console.log("Executando evento de boas vindas!");
         console.log(data);
